@@ -38,16 +38,15 @@ namespace _26C1INF50900505_CSLT.session05
         /// </summary>
         public static void dice_game()
         {
-            long tien = 1000_000; //giả sử người chơi có 1 triệu đồng
-            int soLanChoi = 0; //biến đếm số lần chơi
-            int soLanThua = 0; //biến đếm số lần thua
-            int soLanDacBiet = 0; //biến đếm số lần thắng đặc biệt
-            bool continuePlaying = true; //giả sử chơi tiếp
+            long tien = 100_000;
+            int soLanChoi = 0;
+            int soLanThua = 0;
+            int soLanDacBiet = 0;
+            bool continuePlaying = true;
             do
             {
                 soLanChoi++;
                 Console.Write($"Bạn có {tien} đồng. Bạn đặt bao nhiêu? ");
-                /*int tienDatCuoc = int.Parse(Console.ReadLine());*/
                 long tienDatCuoc = 0;
                 do
                 {
@@ -65,15 +64,12 @@ namespace _26C1INF50900505_CSLT.session05
                     }
                 } while (true);
 
-                // Gieo 2 con súc sắc
+
                 Random rand = new Random();
-                int dice1 = rand.Next(1, 7); //rand.Next(6)+1;
+                int dice1 = rand.Next(1, 7);
                 int dice2 = rand.Next(1, 7);
                 int sum = dice1 + dice2;
-                //hỏi người chơi đoán tài hay xỉu hay lục
 
-                /* Console.Write("Bạn đoán tài (T), xỉu (X) hay lục (L)? ");
-                 string guess = Console.ReadLine().ToLower();*/
                 string guess;
                 do
                 {
@@ -89,9 +85,9 @@ namespace _26C1INF50900505_CSLT.session05
                     }
                 } while (true);
 
-                // Kiểm tra kết quả
-                bool isWin = false; //giả sử bạn thua
-                bool isSpecial = false; //giả sử không phải đặc biệt
+
+                bool isWin = false;
+                bool isSpecial = false;
                 if (guess == "t" && sum > 6)
                 {
                     isWin = true;
@@ -103,7 +99,7 @@ namespace _26C1INF50900505_CSLT.session05
                 else if (guess == "l" && sum == 6)
                 {
                     isWin = true;
-                    isSpecial = true;// là đặc biệt
+                    isSpecial = true;
                 }
                 Console.WriteLine($"Kết quả gieo súc sắc: {dice1} + {dice2} = {sum}");
                 if (isWin)
@@ -127,7 +123,6 @@ namespace _26C1INF50900505_CSLT.session05
                     Console.WriteLine($"Bạn thua! Tổng số tiền hiện tại: {tien} đồng.");
                 }
 
-                //sau mỗi lần chơi, máy sẽ hỏi người chơi có muốn chơi tiếp không, 
                 Console.Write("\nBạn có muốn chơi tiếp không? (C/K): ");
                 string input = Console.ReadLine();//C
                 if (input.ToLower() == "k")
@@ -135,22 +130,15 @@ namespace _26C1INF50900505_CSLT.session05
                     continuePlaying = false;
                 }
             } while (continuePlaying);
-            // Khi kết thúc trò chơi, máy sẽ thông báo tổng số tiền thắng hoặc thua của người chơi.
+
             Console.WriteLine($"\nTrò chơi kết thúc!");
             Console.WriteLine($"Tổng số lần chơi: {soLanChoi}");
             Console.WriteLine($"Tổng số lần thắng: {soLanChoi - soLanThua - soLanDacBiet}");
             Console.WriteLine($"Tổng số lần thua: {soLanThua}");
             Console.WriteLine($"Tổng số lần thắng đặc biệt: {soLanDacBiet}");
+
+            Console.ReadKey();
         }
 
-        void test(long tien)
-        {
-            /*
-             * 6 uocc so = 1,2,3 tong =6 --> perfect number
-             * 28 -> 1,2,4,7,14 tong = 28 --> perfect number
-             * 
-             * i chạy từ 1 đế n/2, nếu n % i == 0 (chia hết ~ ước số) thì cộng i vào tổng
-             * kiểm tra tổng có bằng n hay không, nếu bằng thì là perfect number
-             */
-        }
     }
+}
